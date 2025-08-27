@@ -1,5 +1,6 @@
 console.log("working fine");
-
+const __CTX = document.getElementById('js-context');
+const MAKE_DEFAULT_ADDRESS_URL = __CTX ? __CTX.dataset.makeDefaultUrl : '';
 const monthNames = ["Jan", "Feb", "Mar", "April", "May", "June",
     "July", "Aug", "Sept", "Oct", "Nov", "Dec"
 ];
@@ -102,7 +103,7 @@ $(document).ready(function () {
 
         // 4. Gửi yêu cầu AJAX
         $.ajax({
-            url: FILTER_URL, // *SỬA LỖI 1*: Dùng biến toàn cục
+            url: FILTER_URL, // **SỬA LỖI 1**: Dùng biến toàn cục
             data: filter_object,
             dataType: 'json',
             traditional: true, // Quan trọng để gửi đúng định dạng mảng
@@ -272,7 +273,7 @@ $(document).ready(function () {
         console.log("Element is:", this_val);
 
         $.ajax({
-            url: "/make-default-address",
+            url: MAKE_DEFAULT_ADDRESS_URL, // **SỬA LỖI 2**: Sử dụng biến toàn cục
             data: {
                 "id": id
             },
@@ -295,30 +296,35 @@ $(document).ready(function () {
 
     // Adding to wishlist
     $(document).on("click", ".add-to-wishlist", function () {
-        let product_id = $(this).attr("data-product-item")
-        let this_val = $(this)
+    let product_id = $(this).attr("data-product-item"); // pid của product
+    let this_val = $(this);
 
+    if (!product_id) {
+        console.warn("Missing data-product-item (pid).");
+        return;
+    }
 
-        console.log("PRoduct ID IS", product_id);
-
-        $.ajax({
-            url: "/add-to-wishlist",
-            data: {
-                "id": product_id
-            },
-            dataType: "json",
-            beforeSend: function () {
-                console.log("Adding to wishlist...")
-            },
-            success: function (response) {
-                // this_val.html("✓")
-                this_val.html("<i class='fas fa-heart text-danger'></i>")
-                if (response.bool === true) {
-                    console.log("Added to wishlist...");
-                }
+    $.ajax({
+        url: "/add-to-wishlist",  // URL đã map trong urls.py
+        data: { id: product_id }, // gửi pid trong field 'id'
+        dataType: "json",
+        beforeSend: function () {
+        console.log("Adding to wishlist...", product_id);
+        },
+        success: function (response) {
+        this_val.html("<i class='fas fa-heart text-danger'></i>");
+        if (response.bool === true) {
+            console.log("Added to wishlist:", response);
+            if (response.count !== undefined) {
+            $(".wishlist-count").text(response.count); // update badge nếu có
             }
-        })
-    })
+        }
+        },
+        error: function (xhr) {
+        console.error("Add to wishlist failed:", xhr.responseText || xhr.statusText);
+        }
+    });
+    });
 
 
     // Remove from wishlist
@@ -331,7 +337,7 @@ $(document).ready(function () {
         $.ajax({
             url: "/remove-from-wishlist",
             data: {
-                "id": wishlist_id
+                "pid": wishlist_id
             },
             dataType: "json",
             beforeSend: function () {
@@ -342,6 +348,8 @@ $(document).ready(function () {
             }
         })
     })
+
+
 
 
     $(document).on("submit", "#contact-form-ajax", function (e) {
@@ -429,4 +437,3 @@ $(document).ready(function () {
 //         }
 //     })
 // })
-

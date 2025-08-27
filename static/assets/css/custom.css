@@ -1,0 +1,223 @@
+.product-thumbnail {
+    height: 280px;
+    width: 280px;
+    object-fit: cover;
+}
+
+.no-border-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.heart-icon-colored {
+    fill: aqua;
+}
+/* custom.css */
+.table-order { table-layout: fixed; width:100%; }
+.table-order th:nth-child(2),
+.table-order td:nth-child(2) { width: 140px; text-align:center; }
+.order-detail-img {
+  width:120px; height:120px; object-fit:cover; display:block; margin:0 auto;
+}
+.shop-product-fillter-header .row > [class*="col-"] {
+  display: flex;
+}
+.shop-product-fillter-header .card {
+  width: 100%;
+  height: 50%;
+  padding: 9px 9px 10px;
+  border: 1px solid #ffffff00;
+  border-radius: 12px;
+  
+}
+
+/* vùng có thanh cuộn */
+.scroll-area {
+  max-height: 280px;      /* bạn có thể tăng/giảm theo UI */
+  overflow-y: auto;
+  padding-right: 6px;     /* chừa chỗ cho scrollbar */
+}
+
+/* list item gọn gàng */
+.categories-dropdown-wrap ul,
+.vendor-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.categories-dropdown-wrap li,
+.vendor-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+/* ảnh nhỏ đều nhau */
+.filter-thumb {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* căn checkbox thẳng hàng */
+.filter-checkbox {
+  margin: 0;
+}
+
+/* chỉnh input range và number cho đẹp (tuỳ chọn) */
+.price_range input[type="range"] {
+  width: 100%;
+}
+.price_range input[type="number"] {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #e6e8eb;
+  border-radius: 10px;
+  padding: 0 12px;
+}
+
+/* gutter rộng hơn giữa các cột (nếu dùng BS5 có g-4 thì bỏ đoạn dưới) */
+.shop-product-fillter-header .row {
+  row-gap: 20px;
+}
+.price-card h5{
+  margin-bottom: 6px !important;
+}
+
+.price-card .price-filter{
+  margin: 2px 0 !important;           /* thay vì mb-20 */
+}
+.price-card .price-filter-inner{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.price-card input[type="range"],
+.price-card .slider-range{
+  display: block;
+  width: 100%;
+  margin: 4px 0 6px 0 !important;     /* sát tiêu đề */
+  height: 6px;                         /* gọn */
+}
+
+.price-card .d-flex.my-2{              /* nếu giữ my-2 */
+  margin-top: 4px !important;
+  margin-bottom: 6px !important;
+}
+
+.price-card input[type="number"]{
+  height: 34px !important;
+  font-size: 14px;
+  padding: 4px 8px !important;
+  margin: 6px 0 !important;
+  border-radius: 8px;
+}
+
+.price-card #price-filter-btn{
+  margin-top: 6px !important;          /* thay vì mt-20 */
+  height: 36px !important;
+  font-size: 14px;
+}
+.shop-product-fillter1{
+  margin-top: -180px !important;   /* chỉnh -24/-32px tùy mắt */
+  padding-top: 0 !important;
+}
+.shop-product-fillter1 .totall-product p{
+  margin: 0 !important;           /* bỏ margin của <p> nếu có */
+}
+
+/* Responsive: giảm độ nâng trên màn hình nhỏ để không chồng lấn */
+@media (max-width: 992px){
+  .shop-product-fillter1{ margin-top: -14px !important; }
+}
+.row.product-grid{
+  margin-top: -150px;
+}
+.search-style-2 select.select-active{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding-right: 40px; /* chừa chỗ cho icon */
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  /* mũi tên ▼ (SVG) màu xanh lá của theme */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%233BB77E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+}
+
+.search-style-2 select.select-active:hover{
+  background-color: #f6fff9;        /* hiệu ứng hover nhẹ */
+}
+
+.search-style-2 select.select-active:focus{
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59,183,126,.25) inset; /* viền focus */
+}
+
+
+
+
+/* Wishlist Table */
+.table-wishlist th,
+.table-wishlist td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Cột ảnh */
+.table-wishlist .product-thumbnail img {
+  max-width: 150px;
+  border-radius: 6px;
+}
+
+/* Cột title */
+.table-wishlist .product-name a {
+  font-size: 20px;
+  font-weight: 700;
+  color: #28a745;
+  text-decoration: none;
+}
+.table-wishlist .product-name a:hover {
+  color: #067f27;
+}
+
+/* Giá tiền nhỏ lại */
+.table-wishlist .price span {
+  font-size: 20px;
+  font-weight: 600;
+  color: #28a745; /* xanh kiểu "brand" */
+}
+
+/* Stock status badge */
+.table-wishlist .badge {
+  padding: 10px 20px;
+  font-size: 24px;
+  border-radius: 12px;
+}
+.table-wishlist .bg-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.table-wishlist .bg-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+/* Heart default */
+.product-action-1 .action-btn.add-to-wishlist i{
+  opacity: .6;
+  transition: opacity .15s, transform .1s, color .15s;
+}
+
+/* Heart when active (đã có trong wishlist) */
+.product-action-1 .action-btn.add-to-wishlist.active i{
+  color: #e3342f !important;   /* !important để thắng theme */
+  opacity: 1;
+}
+
+/* Click feedback */
+.product-action-1 .action-btn.add-to-wishlist:active i{
+  transform: scale(.92);
+}

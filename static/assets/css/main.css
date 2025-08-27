@@ -12582,5 +12582,10 @@ footer .hotline img {
         font-size: 35px;
     }
 }
-
+.btn-reset {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
 /*# sourceMappingURL=main.css.map */
